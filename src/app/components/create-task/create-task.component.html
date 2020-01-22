@@ -1,0 +1,41 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Add User</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Form -->
+<div class="inner-wrapper">
+  <form [formGroup]="taskForm" (ngSubmit)="submitTaskForm()" #resetTaskForm="ngForm" novalidate>
+    <!-- Left block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Name -->
+        <!-- <mat-form-field class="example-full-width">
+          <input matInput placeholder="Project" formControlName="project">
+          <mat-error *ngIf="handleError('project', 'required')">
+            You must provide a<strong> project</strong>
+          </mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Project" aria-label="Number" matInput formControlName="project" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <!-- Submit & Reset -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-flat-button color="warn">Submit</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
