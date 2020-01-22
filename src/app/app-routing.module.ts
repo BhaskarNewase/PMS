@@ -8,6 +8,7 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { CreateAccessComponent } from './components/access/create-access/create-access.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -18,11 +19,13 @@ const routes: Routes = [
   { path: 'add-project', component: AddProjectComponent },
   { path: 'edit-project', component: EditProjectComponent },
   { path: 'create-task', component: CreateTaskComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'access/create', component: CreateAccessComponent },
+  { path: 'access/list', component: }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes)] ,
   exports: [RouterModule]
 })
 

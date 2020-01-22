@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export interface Subject {
   name: string;
@@ -71,7 +71,7 @@ export class AddStudentComponent implements OnInit {
     if (index >= 0) {
       this.subjectArray.splice(index, 1);
     }
-  }  
+  }
 
   /* Date */
   formatDate(e) {
@@ -79,12 +79,12 @@ export class AddStudentComponent implements OnInit {
     this.studentForm.get('dob').setValue(convertDate, {
       onlyself: true
     })
-  }  
+  }
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
     return this.studentForm.controls[controlName].hasError(errorName);
-  }  
+  }
 
   /* Submit book */
   submitStudentForm() {

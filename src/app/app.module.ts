@@ -12,6 +12,7 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { CreateAccessComponent } from './components/access/create-access/create-access.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +40,8 @@ import { from } from 'rxjs';
     AddProjectComponent,
     EditProjectComponent,
     LoginComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    CreateAccessComponent
   ],
   imports: [
     BrowserModule,
