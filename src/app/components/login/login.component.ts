@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../shared/authentication.service';
 import { first } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   /* Reactive book form */
   submitBookForm() {
     this.loginForm = this.fb.group({
-      student_email: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     })
   }
@@ -55,11 +55,11 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.student_email.value, this.f.password.value)
+    this.authenticationService.login(this.f.email.value, this.f.password.value)
         .pipe(first())
         .subscribe(
             data => {
-                this.router.navigate(['/students-list']);
+                this.router.navigate(['/user/list']);
             },
             error => {
                 //this.alertService.error(error);

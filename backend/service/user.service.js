@@ -1,3 +1,4 @@
+const passport = require('passport');
 const User = require('../model/User')
 
 const create = async (data) => {
@@ -65,25 +66,41 @@ const deleteUserById = async (id) => {
   });
 }
 
-const login = async () => {
+const login = async (req, res, next) => {
+  const { body: { user } } = req;
   return new Promise((resolve, reject) => {
-    passport.authenticate('local', { session: false }, (error, passportUser, info) => {
+    if(!user.email) {
+      return res.status(422).json({
+        errors: {
+          email: 'is required',
+        },
+      });
+    }
+
+    if(!user.password) {
+      return res.status(422).json({
+        errors: {
+          password: 'is required',
+        },
+      });
+    }
+
+    passport.authenticate('local', { session: false }, (err, passportUser, info) => {
       if(err) {
+        reject(err);
         //return next(err);
-        reject(error)
       }
 
       if(passportUser) {
         const user = passportUser;
         user.token = passportUser.generateJWT();
-
         resolve(user);
-        //return res.json({ user: user.toAuthJSON() });
+        //return res.json({ user: user });
       }
 
-      //return status(400).info;
     })(req, res, next);
-  })
+  });
+
 }
 
 module.exports = {

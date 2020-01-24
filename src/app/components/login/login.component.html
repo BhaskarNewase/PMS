@@ -10,15 +10,15 @@
     <!-- Left block -->
     <mat-card>
       <div class="controlers-wrapper">
-        
+
         <!-- Email -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="User email" formControlName="student_email">
-          <mat-error *ngIf="handleError('student_email', 'required')">
+          <input matInput placeholder="User email" formControlName="email">
+          <mat-error *ngIf="handleError('email', 'required')">
             You must provide a<strong> user email</strong>
           </mat-error>
         </mat-form-field>
-        
+
         <!-- Name -->
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Password" formControlName="password" type="password">

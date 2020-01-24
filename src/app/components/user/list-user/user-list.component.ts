@@ -14,7 +14,7 @@ export class UserListComponent implements OnInit {
   userData: any = [];
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  displayedColumns: string[] = ['_id', 'name', 'email', 'section', 'action'];
+  displayedColumns: string[] = ['_id', 'name', 'email', 'role', 'action'];
 
   constructor(private userService: UserService) {
     this.userService.list().subscribe(data => {

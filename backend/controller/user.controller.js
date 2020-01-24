@@ -56,8 +56,8 @@ exports.delete = async function (req, res, next) {
 
 exports.login = async function(req, res, next) {
   try{
-    let data = await userService.login();
-    let user = new User(create);
+    let data = await userService.login(req, res, next);
+    let user = new User(data);
     return res.status(200).json({ status:200, user: user.toAuthJSON(), message:"user login successfully" });
   } catch (error){
     return res.status(400).json({ status:400, message:error.message });

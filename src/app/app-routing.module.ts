@@ -17,12 +17,13 @@ import { EditRoleComponent } from './components/role/edit-role/edit-role.compone
 import { from } from 'rxjs';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'user/login' },
   // User links
   { path: 'user/create', component: CreateUserComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },
   { path: 'user/list', component: UserListComponent },
-  { path: 'login', component: LoginComponent },
+  // login links
+  { path: 'user/login', component: LoginComponent },
   // Project links
   { path: 'project-list', component: ProjectsListComponent },
   { path: 'add-project', component: AddProjectComponent },
