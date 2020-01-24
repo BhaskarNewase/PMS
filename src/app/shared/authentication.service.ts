@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Student } from './student';
+import { Student } from '../model/user';
 //import { User } from '@/_models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<Student>;
     public currentUser: Observable<Student>;
-    
+
     endpoint: string = 'http://localhost:8000/api';
 
     constructor(private http: HttpClient) {
@@ -22,7 +22,7 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(student_email, password) { 
+    login(student_email, password) {
         let API_URL = `${this.endpoint}/login`;
         return this.http.post<any>(API_URL, { "user":{"student_email":student_email, "password":password }})
             .pipe(map(user => {

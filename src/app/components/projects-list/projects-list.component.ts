@@ -3,7 +3,7 @@ import { ProjectService } from './../../shared/project.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Student } from '../../shared/student';
+import { Student } from '../../model/user';
 import { AuthenticationService } from '../../shared/authentication.service';
 
 @Component({

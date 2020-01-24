@@ -1,9 +1,8 @@
 import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Student } from './shared/student';
 import { AuthenticationService } from './shared/authentication.service';
-
+import { User } from './model/user';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ import { AuthenticationService } from './shared/authentication.service';
 })
 
 export class AppComponent {
-  currentUser: Student;
+  currentUser: User;
   opened = true;
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 

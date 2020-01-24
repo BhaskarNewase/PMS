@@ -1,27 +1,41 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddStudentComponent } from './components/add-student/add-student.component';
-import { EditStudentComponent } from './components/edit-student/edit-student.component';
-import { StudentsListComponent } from './components/students-list/students-list.component';
+import { AddStudentComponent } from './components/user/create-user/create-user.component';
+import { EditStudentComponent } from './components/user/edit-user/edit-user.component';
+import { UserListComponent } from './components/user/list-user/user-list.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { CreateAccessComponent } from './components/access/create-access/create-access.component';
+import { ListAccessComponent } from './components/access/list-access/list-access.component';
+import { EditAccessComponent } from './components/access/edit-access/edit-access.component';
+import { CreateRoleComponent } from './components/role/create-role/create-role.component';
+import { ListRoleComponent } from './components/role/list-role/list-role.component';
+import { EditRoleComponent } from './components/role/edit-role/edit-role.component';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
+  // User links
   { path: 'add-student', component: AddStudentComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },
-  { path: 'students-list', component: StudentsListComponent },
+  { path: 'user/list', component: UserListComponent },
+  { path: 'login', component: LoginComponent },
+  // Project links
   { path: 'project-list', component: ProjectsListComponent },
   { path: 'add-project', component: AddProjectComponent },
   { path: 'edit-project', component: EditProjectComponent },
   { path: 'create-task', component: CreateTaskComponent },
-  { path: 'login', component: LoginComponent },
+  // Access links
   { path: 'access/create', component: CreateAccessComponent },
-  { path: 'access/list', component: }
+  { path: 'access/list', component: ListAccessComponent },
+  { path: 'access/edit/:id', component: EditAccessComponent },
+  // Role links
+  { path: 'role/create', component: CreateRoleComponent },
+  { path: 'role/list', component: ListRoleComponent },
+  { path: 'role/edit', component: EditRoleComponent }
 ];
 
 @NgModule({

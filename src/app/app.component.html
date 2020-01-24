@@ -1,6 +1,6 @@
 <!-- Toolbar -->
 
-<mat-toolbar color="primary" class="header" *ngIf="currentUser">
+<mat-toolbar color="primary" class="header" *ngIf="true"><!--currentUser-->
   <mat-toolbar-row>
     <span><img  src="./assets/images/favicon.ico" style="width:50px;"></span>
     <span>Project Management</span>
@@ -15,11 +15,11 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
       <mat-icon>dialpad</mat-icon>
-      <span>Name : {{currentUser.user.name}} </span>
+      <span>Name :  Bhaskar</span><!--{{currentUser.user.email}}-->
     </button>
     <button mat-menu-item>
       <mat-icon>voicemail</mat-icon>
-      <span>Mail: {{currentUser.user.email}} </span>
+      <span>Mail:  bhaskar.newase@kpit.com</span>
     </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>notifications_off</mat-icon>
@@ -36,7 +36,7 @@
   <mat-sidenav  #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
     [fixedTopGap]>
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="active" routerLink="/students-list">
+      <a mat-list-item routerLinkActive="active" routerLink="/user/list">
         <mat-icon>format_list_bulleted</mat-icon> View User
       </a>
     </mat-nav-list>
@@ -53,6 +53,11 @@
     <mat-nav-list>
       <a mat-list-item routerLinkActive="active" routerLink="/access/list">
         <mat-icon>format_list_bulleted</mat-icon> User Access
+      </a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" routerLink="/role/list">
+        <mat-icon>format_list_bulleted</mat-icon> User Role
       </a>
     </mat-nav-list>
   </mat-sidenav>

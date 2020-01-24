@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Student } from './student';
+import { Student } from '../model/user';
 import { AuthenticationService } from './authentication.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
@@ -18,7 +18,7 @@ export class ProjectService {
   //endpoint: string = 'api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { 
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -78,7 +78,7 @@ export class ProjectService {
       )
   }
 
-  // Error handling 
+  // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

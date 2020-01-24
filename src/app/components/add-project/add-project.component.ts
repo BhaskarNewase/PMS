@@ -5,7 +5,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { ProjectService } from './../../shared/project.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationService } from '../../shared/authentication.service';
-import { Student } from '../../shared/student';
+import { Student } from '../../model/user';
 
 export interface Subject {
   name: string;

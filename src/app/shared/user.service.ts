@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Access } from '../model/access';
+import { User } from '../model/user';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
   providedIn: 'root'
 })
 
-export class AccessService {
+export class UserService {
 
   endpoint: string = 'http://localhost:8000/api';
   // endpoint: string = 'api';
@@ -17,17 +17,17 @@ export class AccessService {
   constructor(private http: HttpClient) { }
 
   // Add student
-  Create(data: Access): Observable<any> {
-    let API_URL = `${this.endpoint}/access/create`;
+  AddStudent(data: User): Observable<any> {
+    let API_URL = `${this.endpoint}/add-user`;
     return this.http.post(API_URL, data)
       .pipe(
         catchError(this.errorMgmt)
       )
   }
 
-  // Get all access
-  GetStudents(): Observable<any> {
-    let API_URL = `${this.endpoint}/access/list`;
+  // Get all users
+  list(): Observable<any> {
+    let API_URL = `${this.endpoint}/user/list`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(
         map((res: Response) => {
@@ -37,30 +37,30 @@ export class AccessService {
       )
   }
 
-  // // Get student
-  // GetStudent(id): Observable<any> {
-  //   let API_URL = `${this.endpoint}/read-student/${id}`;
-  //   return this.http.get(API_URL, { headers: this.headers })
-  //     .pipe(
-  //       map((res: Response) => {
-  //         return res || {}
-  //       }),
-  //       catchError(this.errorMgmt)
-  //     )
-  // }
+  // Get student
+  GetStudent(id): Observable<any> {
+    let API_URL = `${this.endpoint}/read-student/${id}`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map((res: Response) => {
+          return res || {}
+        }),
+        catchError(this.errorMgmt)
+      )
+  }
 
-  // // Update student
-  // UpdateStudent(id, data): Observable<any> {
-  //   let API_URL = `${this.endpoint}/update-student/${id}`;
-  //   return this.http.put(API_URL, data, { headers: this.headers })
-  //     .pipe(
-  //       catchError(this.errorMgmt)
-  //     )
-  // }
+  // Update student
+  UpdateStudent(id, data): Observable<any> {
+    let API_URL = `${this.endpoint}/update-student/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
 
-  // // Delete student
-  DeleteStudent(id): Observable<any> {
-    var API_URL = `${this.endpoint}/access/delete/${id}`;
+  // Delete student
+  delete(id): Observable<any> {
+    var API_URL = `${this.endpoint}/user/delete/${id}`;
     return this.http.delete(API_URL)
       .pipe(
         catchError(this.errorMgmt)

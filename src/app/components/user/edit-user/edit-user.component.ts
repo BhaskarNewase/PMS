@@ -1,21 +1,21 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { ApiService } from './../../shared/api.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UserService } from 'src/app/shared/user.service';
 
 export interface Subject {
   name: string;
 }
 
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css']
+  selector: 'app-edit-student',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
 
-export class AddStudentComponent implements OnInit {
+export class EditStudentComponent implements OnInit {
   visible = true;
   selectable = true;
   removable = true;
@@ -28,26 +28,40 @@ export class AddStudentComponent implements OnInit {
   SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
 
   ngOnInit() {
-    this.submitBookForm();
+    this.updateBookForm();
   }
 
   constructor(
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private studentApi: ApiService
-  ) { }
+    private actRoute: ActivatedRoute,
+    private studentApi: UserService
+  ) {
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    this.studentApi.GetStudent(id).subscribe(data => {
+      console.log(data.subjects)
+      this.subjectArray = data.subjects;
+      this.studentForm = this.fb.group({
+        student_name: [data.student_name, [Validators.required]],
+        student_email: [data.student_email, [Validators.required]],
+        section: [data.section, [Validators.required]],
+        subjects: [data.subjects],
+        dob: [data.dob, [Validators.required]],
+        gender: [data.gender]
+      })
+    })
+  }
 
   /* Reactive book form */
-  submitBookForm() {
+  updateBookForm() {
     this.studentForm = this.fb.group({
       student_name: ['', [Validators.required]],
       student_email: ['', [Validators.required]],
       section: ['', [Validators.required]],
       subjects: [this.subjectArray],
       dob: ['', [Validators.required]],
-      gender: ['Male'],
-      password: ['', [Validators.required]]
+      gender: ['Male']
     })
   }
 
@@ -86,10 +100,12 @@ export class AddStudentComponent implements OnInit {
     return this.studentForm.controls[controlName].hasError(errorName);
   }
 
-  /* Submit book */
-  submitStudentForm() {
-    if (this.studentForm.valid) {
-      this.studentApi.AddStudent(this.studentForm.value).subscribe(res => {
+  /* Update book */
+  updateStudentForm() {
+    console.log(this.studentForm.value)
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    if (window.confirm('Are you sure you want to update?')) {
+      this.studentApi.UpdateStudent(id, this.studentForm.value).subscribe( res => {
         this.ngZone.run(() => this.router.navigateByUrl('/students-list'))
       });
     }

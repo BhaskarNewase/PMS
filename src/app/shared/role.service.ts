@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Student } from './student';
+import { Role } from '../model/role';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
   providedIn: 'root'
 })
 
-export class ApiService {
+export class RoleService {
 
   endpoint: string = 'http://localhost:8000/api';
   // endpoint: string = 'api';
@@ -17,22 +17,17 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   // Add student
-  AddStudent(data: Student): Observable<any> {
-    let API_URL = `${this.endpoint}/add-user`;
+  Create(data: Role): Observable<any> {
+    let API_URL = `${this.endpoint}/role/create`;
     return this.http.post(API_URL, data)
       .pipe(
         catchError(this.errorMgmt)
       )
   }
 
-  // Get all students
-  GetStudents() {
-    return this.http.get(`${this.endpoint}`);
-  }
-
-  // Get student
-  GetStudent(id): Observable<any> {
-    let API_URL = `${this.endpoint}/read-student/${id}`;
+  // Get all access
+  GetRole(): Observable<any> {
+    let API_URL = `${this.endpoint}/role/list`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(
         map((res: Response) => {
@@ -42,18 +37,10 @@ export class ApiService {
       )
   }
 
-  // Update student
-  UpdateStudent(id, data): Observable<any> {
-    let API_URL = `${this.endpoint}/update-student/${id}`;
-    return this.http.put(API_URL, data, { headers: this.headers })
-      .pipe(
-        catchError(this.errorMgmt)
-      )
-  }
 
-  // Delete student
-  DeleteStudent(id): Observable<any> {
-    var API_URL = `${this.endpoint}/delete-student/${id}`;
+  // Delete role
+  DeleteRole(id): Observable<any> {
+    var API_URL = `${this.endpoint}/role/delete/${id}`;
     return this.http.delete(API_URL)
       .pipe(
         catchError(this.errorMgmt)
