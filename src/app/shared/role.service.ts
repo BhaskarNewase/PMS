@@ -26,7 +26,7 @@ export class RoleService {
   }
 
   // Get all access
-  GetRole(): Observable<any> {
+  list(): Observable<any> {
     let API_URL = `${this.endpoint}/role/list`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(

@@ -26,7 +26,7 @@ export class AccessService {
   }
 
   // Get all access
-  GetStudents(): Observable<any> {
+  list(): Observable<any> {
     let API_URL = `${this.endpoint}/access/list`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(

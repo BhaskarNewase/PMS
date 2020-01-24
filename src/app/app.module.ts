@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 /* Angular 8 components */
-import { AddStudentComponent } from './components/user/create-user/create-user.component';
+import { CreateUserComponent } from './components/user/create-user/create-user.component';
 import { EditStudentComponent } from './components/user/edit-user/edit-user.component';
 import { UserListComponent } from './components/user/list-user/user-list.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
@@ -40,7 +40,7 @@ import { from } from 'rxjs';
 @NgModule({
   declarations: [
     AppComponent,
-    AddStudentComponent,
+    CreateUserComponent,
     EditStudentComponent,
     UserListComponent,
     ProjectsListComponent,

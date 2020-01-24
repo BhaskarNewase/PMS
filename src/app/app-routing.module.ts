@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddStudentComponent } from './components/user/create-user/create-user.component';
+import { CreateUserComponent } from './components/user/create-user/create-user.component';
 import { EditStudentComponent } from './components/user/edit-user/edit-user.component';
 import { UserListComponent } from './components/user/list-user/user-list.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
@@ -19,7 +19,7 @@ import { from } from 'rxjs';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   // User links
-  { path: 'add-student', component: AddStudentComponent },
+  { path: 'user/create', component: CreateUserComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },
   { path: 'user/list', component: UserListComponent },
   { path: 'login', component: LoginComponent },

@@ -4,46 +4,51 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
+import { RoleService } from 'src/app/shared/role.service';
 
 export interface Subject {
   name: string;
 }
 
 @Component({
-  selector: 'app-add-student',
+  selector: 'app-add-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
 
-export class AddStudentComponent implements OnInit {
+export class CreateUserComponent implements OnInit {
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   @ViewChild('chipList', { static: true }) chipList;
-  @ViewChild('resetStudentForm', { static: true }) myNgForm;
+  @ViewChild('resetUserForm', { static: true }) myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  studentForm: FormGroup;
+  userForm: FormGroup;
   subjectArray: Subject[] = [];
-  SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
-
-  ngOnInit() {
-    this.submitBookForm();
-  }
+  roleArray: any = [];
 
   constructor(
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private studentApi: UserService
+    private userApi: UserService,
+    private roleApi: RoleService
   ) { }
 
-  /* Reactive book form */
-  submitBookForm() {
-    this.studentForm = this.fb.group({
-      student_name: ['', [Validators.required]],
-      student_email: ['', [Validators.required]],
-      section: ['', [Validators.required]],
+  ngOnInit() {
+    this.roleApi.list().subscribe(res => {
+      this.roleArray = res.data;
+    });
+    this.submitRegistrationForm();
+  }
+
+  /* Reactive user form */
+  submitRegistrationForm() {
+    this.userForm = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      role: ['', [Validators.required]],
       subjects: [this.subjectArray],
       dob: ['', [Validators.required]],
       gender: ['Male'],
@@ -76,21 +81,21 @@ export class AddStudentComponent implements OnInit {
   /* Date */
   formatDate(e) {
     var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.studentForm.get('dob').setValue(convertDate, {
+    this.userForm.get('dob').setValue(convertDate, {
       onlyself: true
     })
   }
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
-    return this.studentForm.controls[controlName].hasError(errorName);
+    return this.userForm.controls[controlName].hasError(errorName);
   }
 
-  /* Submit book */
-  submitStudentForm() {
-    if (this.studentForm.valid) {
-      this.studentApi.AddStudent(this.studentForm.value).subscribe(res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/students-list'))
+  /* Submit user */
+  submitUserForm() {
+    if (this.userForm.valid) {
+      this.userApi.create(this.userForm.value).subscribe(res => {
+        this.ngZone.run(() => this.router.navigateByUrl('/user/list'))
       });
     }
   }

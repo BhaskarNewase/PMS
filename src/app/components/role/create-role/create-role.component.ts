@@ -21,7 +21,6 @@ export class CreateRoleComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  a: [];
   accessArray: any[] = [];
   @ViewChild('chipList', { static: true }) chipList;
   @ViewChild('resetRoleForm', { static: true }) myNgForm;
@@ -36,7 +35,7 @@ export class CreateRoleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.accessApi.GetStudents().subscribe(res => {
+    this.accessApi.list().subscribe(res => {
       this.accessArray = res.data;
     });
     this.submitRoleForm();

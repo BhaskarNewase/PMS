@@ -1,9 +1,9 @@
 export class User {
-   _id: String;
-   student_name: String;
-   student_email: String;
-   section: String;
+   _id: string;
+   name: string;
+   email: string;
    subjects: Array<string>;
    dob: Date;
-   gender: String;
+   gender: string;
+   role: Array<string>;
 }

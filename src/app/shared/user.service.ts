@@ -16,9 +16,9 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  // Add student
-  AddStudent(data: User): Observable<any> {
-    let API_URL = `${this.endpoint}/add-user`;
+  // create new user
+  create(data: User): Observable<any> {
+    let API_URL = `${this.endpoint}/user/create`;
     return this.http.post(API_URL, data)
       .pipe(
         catchError(this.errorMgmt)

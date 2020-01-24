@@ -6,35 +6,35 @@
 
 <!-- Form -->
 <div class="inner-wrapper">
-  <form [formGroup]="studentForm" (ngSubmit)="submitStudentForm()" #resetStudentForm="ngForm" novalidate>
+  <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" #resetUserForm="ngForm" novalidate>
     <!-- Left block -->
     <mat-card>
       <div class="controlers-wrapper">
         <!-- Name -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="User name" formControlName="student_name">
-          <mat-error *ngIf="handleError('student_name', 'required')">
+          <input matInput placeholder="User name" formControlName="name">
+          <mat-error *ngIf="handleError('name', 'required')">
             You must provide a<strong> user name</strong>
           </mat-error>
         </mat-form-field>
 
         <!-- Email -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="User email" formControlName="student_email">
-          <mat-error *ngIf="handleError('student_email', 'required')">
+          <input matInput placeholder="User email" formControlName="email">
+          <mat-error *ngIf="handleError('email', 'required')">
             You must provide a<strong> user email</strong>
           </mat-error>
         </mat-form-field>
 
-        <!-- Section -->
+        <!-- Role -->
         <mat-form-field>
-          <mat-label>Section</mat-label>
-          <mat-select [(value)]="selected" formControlName="section">
-            <mat-option [value]="sectioinArray" *ngFor="let sectioinArray of SectioinArray">{{sectioinArray}}
+          <mat-label>Role</mat-label>
+          <mat-select [(value)]="selected" formControlName="role">
+            <mat-option [value]="roleArr._id" *ngFor="let roleArr of roleArray">{{roleArr.name}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="handleError('section', 'required')">
-            Section is required
+          <mat-error *ngIf="handleError('role', 'required')">
+            Role is required
           </mat-error>
         </mat-form-field>
       </div>
