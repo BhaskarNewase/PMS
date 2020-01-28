@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Student } from '../model/user';
+import { User } from '../model/user';
 import { AuthenticationService } from './authentication.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 export class ProjectService {
 
-  currentUser: Student;
+  currentUser: User;
 
   endpoint: string = 'http://localhost:8000/api/projects';
   //endpoint: string = 'api';

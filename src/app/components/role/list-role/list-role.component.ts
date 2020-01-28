@@ -17,7 +17,7 @@ export class ListRoleComponent implements OnInit {
   displayedColumns: string[] = ['_id', 'name', 'status', 'access', 'action'];
 
   constructor(private accessApi: RoleService) {
-    this.accessApi.GetRole().subscribe(data => {
+    this.accessApi.list().subscribe(data => {
       this.RoleData = data.data;
       this.dataSource = new MatTableDataSource<Role>(this.RoleData);
       setTimeout(() => {

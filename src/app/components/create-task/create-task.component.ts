@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationService } from '../../shared/authentication.service';
-import { Student } from '../../model/user';
+import { User } from '../../model/user';
 import { ProjectService } from './../../shared/project.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProjectService } from './../../shared/project.service';
 })
 export class CreateTaskComponent implements OnInit {
 
-  currentUser: Student;
+  currentUser: User;
   taskForm: FormGroup;
   options: string[] = ['One', 'Two', 'Three'];
   constructor(public fb: FormBuilder, private projectApi: ProjectService, private authenticationService: AuthenticationService) {

@@ -15,9 +15,10 @@ import { CreateRoleComponent } from './components/role/create-role/create-role.c
 import { ListRoleComponent } from './components/role/list-role/list-role.component';
 import { EditRoleComponent } from './components/role/edit-role/edit-role.component';
 import { from } from 'rxjs';
+//import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'user/login' },
+  { path: '', pathMatch: 'full', redirectTo: 'user/login'},
   // User links
   { path: 'user/create', component: CreateUserComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },

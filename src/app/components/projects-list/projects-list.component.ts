@@ -3,7 +3,7 @@ import { ProjectService } from './../../shared/project.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Student } from '../../model/user';
+import { User } from '../../model/user';
 import { AuthenticationService } from '../../shared/authentication.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { AuthenticationService } from '../../shared/authentication.service';
 })
 export class ProjectsListComponent implements OnInit {
 
-  currentUser: Student;
+  currentUser: User;
   ProjectData: any = [];
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;

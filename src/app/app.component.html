@@ -1,6 +1,6 @@
 <!-- Toolbar -->
 
-<mat-toolbar color="primary" class="header" *ngIf="true"><!--currentUser-->
+<mat-toolbar color="primary" class="header" *ngIf="currentUser"><!--currentUser-->
   <mat-toolbar-row>
     <span><img  src="./assets/images/favicon.ico" style="width:50px;"></span>
     <span>Project Management</span>
@@ -15,11 +15,11 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
       <mat-icon>dialpad</mat-icon>
-      <span>Name :  Bhaskar</span><!--{{currentUser.user.email}}-->
+      <span>Name : {{ currentUser.name }}</span><!--{{currentUser.user.email}}-->
     </button>
     <button mat-menu-item>
       <mat-icon>voicemail</mat-icon>
-      <span>Mail:  bhaskar.newase@kpit.com</span>
+      <span>Mail:  {{ currentUser.email }}</span>
     </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>notifications_off</mat-icon>

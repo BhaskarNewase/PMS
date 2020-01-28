@@ -5,7 +5,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { ProjectService } from './../../shared/project.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationService } from '../../shared/authentication.service';
-import { Student } from '../../model/user';
+import { User } from '../../model/user';
 
 export interface Subject {
   name: string;
@@ -18,7 +18,7 @@ export interface Subject {
 })
 export class AddProjectComponent implements OnInit {
 
-  currentUser: Student;
+  currentUser: User;
   visible = true;
   selectable = true;
   removable = true;

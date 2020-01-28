@@ -17,7 +17,7 @@ export class ListAccessComponent implements OnInit {
   displayedColumns: string[] = ['_id', 'name', 'status', 'action'];
 
   constructor(private accessApi: AccessService) {
-    this.accessApi.GetStudents().subscribe(data => {
+    this.accessApi.list().subscribe(data => {
       this.StudentData = data.data;
       this.dataSource = new MatTableDataSource<Access>(this.StudentData);
       setTimeout(() => {
